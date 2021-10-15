@@ -15,28 +15,13 @@
             <Output TaskParameter="Lines" ItemName="LinesFromFile"/>
         </ReadLinesFromFile>
 
-<!--        For ignore checking PackageReference with version in project file add ItemGroup bellow with package name-->
-<!--    
-        <ItemGroup>
-            <PackageReferenceAllowedWithVersion Include="..."/>
-        </ItemGroup>
-        
-        -->
-        
         <ItemGroup>
             <PackageReferenceValidation Include="@(LinesFromFile)">
                 <Failed>$([System.Text.RegularExpressions.Regex]::Match('%(Identity)', '$(ValidateRegex)').get_Success())</Failed>
             </PackageReferenceValidation>
         </ItemGroup>
 
-        <ItemGroup>
-            <!--         Trick from here https://philcupp.wordpress.com/2009/10/12/msbuild-tricks-i-don%E2%80%99t-want-to-forget/-->
-            <PackageReferenceWithVersion 
-                    Include="@(PackageReferenceValidation)"
-                    Condition=" '%(PackageReferenceValidation.Failed)'=='True' and '@(PackageReferenceAllowedWithVersion)'=='' and '@(PackageReferenceValidation)'!='' and '%(Identity)'!=''"/>
-        </ItemGroup>
-        
-        <Error Text="Wrong PackageReference '%(PackageReferenceWithVersion.Identity)' found in project file. Move Version and assets to 'nuget.packages.versions.props'. More details see in nuget.packages.versions.props and $(HelpLink)"
+        <Error Condition="'%(PackageReferenceValidation.Failed)'=='True'" Text="Wrong PackageReference '%(PackageReferenceValidation.Identity)' found in project file. Move Version and assets to 'nuget.packages.versions.props'. More details see in nuget.packages.versions.props and $(HelpLink)"
                HelpKeyword="$(HelpLink)"
                File="$(MSBuildProjectFullPath)"/>
 
