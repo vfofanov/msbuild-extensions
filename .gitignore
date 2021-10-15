@@ -2,3 +2,4 @@
 .vs
 /src/bin/
 obj
+/bin/

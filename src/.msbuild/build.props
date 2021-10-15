@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFrameworks>net461;netstandard2.0;net5.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>       
-        <OutDir>$(MSBuildProjectDirectory)\..\bin</OutDir>
-        <PackageOutputPath>$(MSBuildProjectDirectory)\..\bin\Packages</PackageOutputPath>
+        <OutDir>$(MSBuildThisFileDirectory)..\..\bin</OutDir>
+        <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\bin\Packages</PackageOutputPath>
         
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <DocumentationFile>$(OutDir)\$(MSBuildProjectName).xml</DocumentationFile>
@@ -20,5 +20,6 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>    
-    </PropertyGroup>    
+    </PropertyGroup>
+
 </Project>
