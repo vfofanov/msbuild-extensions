@@ -24,7 +24,7 @@
     <ItemGroup>
         <None Include="build\*.*" PackagePath="build\" Pack="true" />
         <None Include="buildMultiTargeting\*.*" PackagePath="buildMultiTargeting\" Pack="true" />
-        <None Include="README.md" PackagePath="\" Pack="true" />
+        <None Include="..\..\README.md" PackagePath="\" Pack="true" />
         <!--        <None Include="content\*.*" PackagePath="contentFiles\any\any" Pack="true" />-->
         
     </ItemGroup>
