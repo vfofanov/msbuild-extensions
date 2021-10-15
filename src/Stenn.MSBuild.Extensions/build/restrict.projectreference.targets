@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!--    Checks ProjectReference in projects -->
+    <!--    Read details todo -->
+    
+    <Target Name="RestrictProjectReferenceChecksTarget" Condition="'$(EnableRestrictProjectReferenceChecks)'=='True'" BeforeTargets="Build">
+
+<!--        Check ProjectReference for missed Allowed metadata    -->
+        
+        <ItemGroup>
+<!--            <ProjectReferenceAlwaysAllowed Include="..."/>-->
+        </ItemGroup>
+        
+<!--        <Warning Text="V:'%(ProjectReference.Allowed)' A:'@(ProjectReferenceAlwaysAllowed)' P:'@(ProjectReference)'!='' I:'%(Identity)'" />-->
+        
+        <ItemGroup>
+<!--         Trick from here https://philcupp.wordpress.com/2009/10/12/msbuild-tricks-i-don%E2%80%99t-want-to-forget/-->
+            <ProjectReferenceNotAllowed Include="@(ProjectReference)"
+                                        Condition=" '%(ProjectReference.Allowed)'!='True' and '@(ProjectReferenceAlwaysAllowed)'=='' and '@(ProjectReference)'!='' and '%(Identity)'!=''"/>
+        </ItemGroup>
+
+        <Error Condition="'%(ProjectReferenceNotAllowed.Identity)'!=''"
+               Text="ProjectReference '%(ProjectReferenceNotAllowed.Identity)' not allowed in project file"
+               HelpKeyword="$(HelpLink)"
+               File="$(MSBuildProjectFullPath)"/>
+
+    </Target>
+
+</Project>

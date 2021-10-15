@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+    <PropertyGroup>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageIconUrl>https://github.com/StennGroup/stenn-aspnetcore-versioning/blob/logo/icon.png</PackageIconUrl>
+
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        
+        <ErrorReportUrl>https://github.com/StennGroup/stenn-msbuild-extensions/issues</ErrorReportUrl>
+        <PackageProjectUrl>https://github.com/StennGroup/stenn-msbuild-extensions</PackageProjectUrl>
+        <PackageTags>Microsoft MSBuild Tasks Build</PackageTags>
+    </PropertyGroup>
+    
+    
+    
+     <!--Packages details-->
+    <ItemGroup>
+        <None Include="..\..\LICENSE" Pack="true" PackagePath="\" Visible="false" />
+        <None Include="..\..\logo\icon.png" Pack="true" PackagePath="\" Visible="false" />
+    </ItemGroup>
+</Project>

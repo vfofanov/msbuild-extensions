@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!--    Checks PackageReference in projects -->
+    <!--    Read details -->
+    <PropertyGroup>
+        <!--		<\s*PackageReference\s+Include\s*=\s*".+?"\s+\w(.+?)"\s*/{0,1}>-->
+        <ValidateRegex>&lt;\s*PackageReference\s+Include\s*=\s*&quot;.+?&quot;\s+\w(.+?)&quot;\s*/{0,1}&gt;</ValidateRegex>
+        <HelpLink>https://www.notion.so/Nuget-props-f3f3e6a4f85c4a5cae4bd3ed83c4f196</HelpLink>
+    </PropertyGroup>
+
+    <Target Name="PackageReferenceChecks" BeforeTargets="_GenerateRestoreGraph;Restore;Build">
+
+        <!--        Check project file for PackageReference with Version metadata      -->
+        <ReadLinesFromFile File="$(MSBuildProjectFullPath)">
+            <Output TaskParameter="Lines" ItemName="LinesFromFile"/>
+        </ReadLinesFromFile>
+
+        <ItemGroup>
+            <PackageReferenceValidation Include="@(LinesFromFile)">
+                <Failed>$([System.Text.RegularExpressions.Regex]::Match('%(Identity)', '$(ValidateRegex)').get_Success())</Failed>
+            </PackageReferenceValidation>
+        </ItemGroup>
+
+        <Error Condition="'%(PackageReferenceValidation.Failed)'=='True'" Text="Wrong PackageReference '%(PackageReferenceValidation.Identity)' found in project file. Move Version and assets to 'nuget.packages.versions.props'. More details see in nuget.packages.versions.props and $(HelpLink)"
+               HelpKeyword="$(HelpLink)"
+               File="$(MSBuildProjectFullPath)"/>
+
+
+        <!--        Check PackageReference for missed Version metadata      -->
+        <ItemGroup>
+            <PackageReferenceAllowedWithoutVersion Include="NETStandard.Library"/>
+            <PackageReferenceAllowedWithoutVersion Include="Microsoft.NETCore.App"/>
+            <PackageReferenceAllowedWithoutVersion Include="Microsoft.AspNetCore.App"/>
+            <PackageReferenceAllowedWithoutVersion Include="Microsoft.AspNetCore.All"/>
+        </ItemGroup>
+
+        <!--        <Warning Text="V:'%(PackageReference.Version)' A:'@(PackageReferenceAllowedWithoutVersion)' P:'@(PackageReference)'!='' I:'%(Identity)'" />-->
+
+        <ItemGroup>
+            <!--         Trick from here https://philcupp.wordpress.com/2009/10/12/msbuild-tricks-i-don%E2%80%99t-want-to-forget/-->
+            <PackageReferenceWithoutVersion Include="@(PackageReference)"
+                                            Condition=" '%(PackageReference.Version)'=='' and '@(PackageReferenceAllowedWithoutVersion)'=='' and '@(PackageReference)'!='' and '%(Identity)'!=''"/>
+        </ItemGroup>
+
+        <Error Condition="'%(PackageReferenceWithoutVersion.Identity)'!=''"
+               Text="PackageReference '%(PackageReferenceWithoutVersion.Identity)' without Version found in project file. Move Version and assets to 'nuget.packages.versions.props'. More details see in nuget.packages.versions.props and $(HelpLink)"
+               HelpKeyword="$(HelpLink)"
+               File="$(MSBuildProjectFullPath)"/>
+
+    </Target>
+
+</Project>

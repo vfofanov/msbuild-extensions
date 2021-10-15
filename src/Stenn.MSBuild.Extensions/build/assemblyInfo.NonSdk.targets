@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <!-- Convert Sdk properties to old attributes -->
+    <ItemGroup>
+        <!-- Support for old projects -->
+        <AssemblyAttribute Condition="'$(Company)'!=''" Include="AssemblyCompany">
+            <_Parameter1>$(Company)</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Condition="'$(Copyright)'!=''" Include="AssemblyCopyright">
+            <_Parameter1>$(Copyright)</_Parameter1>
+        </AssemblyAttribute>
+
+        <AssemblyAttribute Condition="'$(Product)'!=''" Include="AssemblyProduct">
+            <_Parameter1>$(Product)</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Condition="'$(AssemblyTitle)'!=''" Include="AssemblyTitle">
+            <_Parameter1>$(AssemblyTitle)</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Condition="'$(Description)'!=''" Include="AssemblyDescription">
+            <_Parameter1>$(Description)</_Parameter1>
+        </AssemblyAttribute>		
+
+        <AssemblyAttribute Condition="'$(AssemblyVersion)'!=''" Include="AssemblyVersion">
+            <_Parameter1>$(AssemblyVersion)</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Condition="'$(FileVersion)'!=''" Include="AssemblyFileVersion">
+            <_Parameter1>$(FileVersion)</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Condition="'$(InformationalVersion)'!=''" Include="AssemblyInformationalVersion">
+            <_Parameter1>$(InformationalVersion)</_Parameter1>
+        </AssemblyAttribute>			
+    </ItemGroup>
+
+    <!-- Support for old projects -->
+    <PropertyGroup Condition="'$(MSBuildProjectExtension)'=='.csproj'">
+        <!-- for csproj -->
+        <_CommonAssemblyOutputPath>$(IntermediateOutputPath)</_CommonAssemblyOutputPath>
+        <_CommonAssemblyFileExtension>.cs</_CommonAssemblyFileExtension> 
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(MSBuildProjectExtension)'=='.vcxproj'">
+        <!-- for vcxproj -->
+        <_CommonAssemblyOutputPath>$(IntDir)</_CommonAssemblyOutputPath> 
+        <_CommonAssemblyFileExtension>.cpp</_CommonAssemblyFileExtension>
+    </PropertyGroup>
+    <PropertyGroup>
+        <_CommonAssemblyFilePath>$(_CommonAssemblyOutputPath)Common.AssemblyInfo$(_CommonAssemblyFileExtension)</_CommonAssemblyFilePath>
+    </PropertyGroup>
+
+    <!-- AssemblyInfo generation task. Only for non Sdk style *proj files -->
+    <Target Name="GenerateCommonAssemblyInfo" BeforeTargets="Build" DependsOnTargets="$(GenerateCommonAssemblyInfo_DependsOnTargets)"
+        Inputs="@(AssemblyAttribute);$(_CommonAssemblyOutputPath);$(Language)"
+        Outputs="$(_CommonAssemblyFilePath)">
+
+        <MakeDir Directories="$(_CommonAssemblyOutputPath)"/>
+        <WriteCodeFragment Language="$(Language)" OutputFile="$(_CommonAssemblyFilePath)" AssemblyAttributes="@(AssemblyAttribute)" />
+
+        <!-- Include to the project -->
+        <ItemGroup Condition="'$(MSBuildProjectExtension)'=='.csproj'">
+            <!-- for csproj -->
+            <Compile Include="$(_CommonAssemblyFilePath)" />
+        </ItemGroup>
+        <ItemGroup Condition="'$(MSBuildProjectExtension)'=='.vcxproj'">
+            <!-- for vcxproj -->
+            <ClCompile Include="$(_CommonAssemblyFilePath)" />
+        </ItemGroup>  
+    </Target>
+
+</Project>
