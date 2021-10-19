@@ -38,8 +38,8 @@ jobs:
       run: dotnet restore ${{ env.PROJECT_PATH }}
 
     - name: 'Build'
-      run: dotnet msbuild -t:Build -property:Configuration=${{ env.BUILD_CONFIGURATION }};PatchNumSuffix=${{ github.event.inputs.PATCH_NUM_SUFFIX }} ${{ env.PROJECT_PATH }}
-
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration ${{ env.BUILD_CONFIGURATION }} '/p:PatchNumSuffix=${{ github.event.inputs.PATCH_NUM_SUFFIX }}'
+      
     - name: 'Pack'
       run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
