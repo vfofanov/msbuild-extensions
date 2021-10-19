@@ -40,6 +40,3 @@ jobs:
 
     - name: 'Push packages'
       run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg -k ${{ secrets.NUGET_ORG_API_KEY }} -s ${{ env.NUGET_SOURCE_URL }}
-      
-    - name: 'Push symbol packages'
-      run: dotnet nuget push ${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.snupkg -k ${{ secrets.NUGET_ORG_API_KEY }} -s ${{ env.NUGET_SOURCE_URL }}
