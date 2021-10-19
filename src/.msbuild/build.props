@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
     <PropertyGroup>
-        <TargetFrameworks>net461;netstandard2.0;net5.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>       
         <OutDir>$(MSBuildThisFileDirectory)..\..\bin</OutDir>
         <PackageOutputPath>$(MSBuildThisFileDirectory)..\..\bin\Packages</PackageOutputPath>
@@ -13,7 +13,7 @@
 
     <PropertyGroup>
         <!--        Nuget-->
-        <PatchNumSuffix>beta</PatchNumSuffix>
+<!--        <PatchNumSuffix>beta</PatchNumSuffix>-->
         
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         
