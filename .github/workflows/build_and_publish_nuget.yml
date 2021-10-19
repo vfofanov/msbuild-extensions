@@ -6,13 +6,18 @@ name: Build and publish to nuget.org
 on:  
   release:
     types:
-      - created
+      - published
    # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      PATCH_NUM_SUFFIX:
+        description: 'Version patch number suffix'
+        required: true
+        default: 'beta'
 
 env:
   PROJECT_PATH: 'src/Stenn.MSBuild.Extensions.sln'
-  PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}/output
+  PACKAGE_OUTPUT_DIRECTORY: '${{ github.workspace }}/output'
   NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
   BUILD_CONFIGURATION: Release
 
@@ -33,7 +38,7 @@ jobs:
       run: dotnet restore ${{ env.PROJECT_PATH }}
 
     - name: 'Build'
-      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration ${{ env.BUILD_CONFIGURATION }}
+      run: dotnet msbuild -t:Build -p:Configuration=${{ env.BUILD_CONFIGURATION }} '-p:PatchNumSuffix=${{ github.event.inputs.PATCH_NUM_SUFFIX }}' ${{ env.PROJECT_PATH }}
 
     - name: 'Pack'
       run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration ${{ env.BUILD_CONFIGURATION }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
