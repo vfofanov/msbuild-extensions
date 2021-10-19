@@ -12,11 +12,11 @@
 	<!-- see https://github.com/dotnet/sourcelink for details-->
 	<PropertyGroup>
 		<!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<PublishRepositoryUrl Condition="'$(PublishRepositoryUrl)'==''">true</PublishRepositoryUrl>
 		<!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<EmbedUntrackedSources Condition="'$(EmbedUntrackedSources)'==''">true</EmbedUntrackedSources>
 		<!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<IncludeSymbols Condition="'$(IncludeSymbols)'==''">true</IncludeSymbols>
+		<SymbolPackageFormat Condition="'$(SymbolPackageFormat)'==''">snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 </Project>

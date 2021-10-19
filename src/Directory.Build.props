@@ -4,6 +4,8 @@
     <Import Project="$(MSBuildThisFileDirectory).msbuild\product.props"/>
     <Import Project="$(MSBuildThisFileDirectory).msbuild\package.props"/>
     <Import Project="$(MSBuildThisFileDirectory).msbuild\version.props"/>
-    <Import Project="$(MSBuildThisFileDirectory).msbuild\build.props"/>    
+    <Import Project="$(MSBuildThisFileDirectory).msbuild\build.props"/>
+
+    <Import Project="$(MSBuildThisFileDirectory)Stenn.MSBuild.Extensions\build\Stenn.MSBuild.Extensions.props"/>
 
 </Project>

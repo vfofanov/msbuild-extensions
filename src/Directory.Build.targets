@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
-    <Import Project="$(MSBuildThisFileDirectory)Stenn.MSBuild.Extensions\build\assemblyInfo.targets"/>
+    <Import Project="$(MSBuildThisFileDirectory)Stenn.MSBuild.Extensions\build\Stenn.MSBuild.Extensions.targets"/>
     
 </Project>

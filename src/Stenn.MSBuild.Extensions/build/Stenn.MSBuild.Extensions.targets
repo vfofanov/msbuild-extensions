@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
-    <Import Condition="'$(EnableExtension_AssemblyInfo)'=='True'" Project="$(MSBuildThisFileDirectory)\assemblyInfo.targets" />
-    <Import Condition="'$(EnableExtension_NugetPackageVersionsSingleFile)'=='True'" Project="$(MSBuildThisFileDirectory)\nuget.packages.versions.single.file.targets" />
-    <Import Condition="'$(EnableExtension_RestrictProjectReference)'=='True'" Project="$(MSBuildThisFileDirectory)\restrict.projectreference.targets" />
+    <Import Condition="'$(EnableExtension_AssemblyInfo)'=='True' Or '$(EnableExtension_AssemblyInfo)'=='true'" 
+            Project="$(MSBuildThisFileDirectory)\assemblyInfo.targets" />
+    
+    <Import Condition="'$(EnableExtension_NugetPackageVersionsSingleFile)'=='True' Or '$(EnableExtension_AssemblyInfo)'=='true'"
+            Project="$(MSBuildThisFileDirectory)\nuget.packages.versions.single.file.targets" />
+    
+    <Import Condition="'$(EnableExtension_RestrictProjectReference)'=='True' Or '$(EnableExtension_AssemblyInfo)'=='true'"
+            Project="$(MSBuildThisFileDirectory)\restrict.projectreference.targets" />
 
 </Project>

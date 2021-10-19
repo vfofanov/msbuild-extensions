@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   
-  <Import Condition="'$(EnableExtension_SourceLinkGitHub)'=='True'" Project="$(MSBuildThisFileDirectory)\sourcelink.github.props" />
+  <Import Condition="'$(EnableExtension_SourceLinkGitHub)'=='True' Or '$(EnableExtension_SourceLinkGitHub)'=='true'" Project="$(MSBuildThisFileDirectory)\sourcelink.github.props" />
   
 </Project>

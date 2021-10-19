@@ -11,15 +11,10 @@
         <NoWarn>$(NoWarn);CS1591</NoWarn>
     </PropertyGroup>
 
+<!--    Stenn MSBuild extensions-->
     <PropertyGroup>
-        <!--        Nuget-->
-<!--        <PatchNumSuffix>beta</PatchNumSuffix>-->
-        
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>    
+        <EnableExtension_SourceLinkGitHub>true</EnableExtension_SourceLinkGitHub>
+        <EnableExtension_AssemblyInfo>true</EnableExtension_AssemblyInfo>
     </PropertyGroup>
 
 </Project>
