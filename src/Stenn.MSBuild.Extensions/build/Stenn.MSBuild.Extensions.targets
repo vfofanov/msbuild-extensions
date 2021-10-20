@@ -4,10 +4,10 @@
     <Import Condition="'$(EnableExtension_AssemblyInfo)'=='True' Or '$(EnableExtension_AssemblyInfo)'=='true'" 
             Project="$(MSBuildThisFileDirectory)\assemblyInfo.targets" />
     
-    <Import Condition="'$(EnableExtension_NugetPackageVersionsSingleFile)'=='True' Or '$(EnableExtension_AssemblyInfo)'=='true'"
+    <Import Condition="'$(EnableExtension_NugetPackageVersionsSingleFile)'=='True' Or '$(EnableExtension_NugetPackageVersionsSingleFile)'=='true'"
             Project="$(MSBuildThisFileDirectory)\nuget.packages.versions.single.file.targets" />
     
-    <Import Condition="'$(EnableExtension_RestrictProjectReference)'=='True' Or '$(EnableExtension_AssemblyInfo)'=='true'"
+    <Import Condition="'$(EnableExtension_RestrictProjectReference)'=='True' Or '$(EnableExtension_RestrictProjectReference)'=='true'"
             Project="$(MSBuildThisFileDirectory)\restrict.projectreference.targets" />
 
 </Project>
