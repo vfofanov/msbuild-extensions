@@ -3,7 +3,7 @@
 	<!-- For read git metadata -->
 	<!-- see for more details https://kaylumah.nl/2021/03/27/set-nuget-metadata-via-msbuild.html-->
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
