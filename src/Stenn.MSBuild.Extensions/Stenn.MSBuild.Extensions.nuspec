@@ -12,7 +12,7 @@
         <projectUrl>https://github.com/StennGroup/stenn-msbuild-extensions</projectUrl>
         <iconUrl>https://github.com/StennGroup/stenn-aspnetcore-versioning/blob/logo/icon.png</iconUrl>
         <description>MSBuild common routine.</description>
-        <copyright>© 2022 Stenn International Ltd. ALL RIGHTS RESERVED.</copyright>
+        <copyright>$Copyright$</copyright>
         <tags>MSBuild Tasks</tags>
         <dependencies>
                 <dependency id="Microsoft.SourceLink.GitHub" version="1.1.1" />
