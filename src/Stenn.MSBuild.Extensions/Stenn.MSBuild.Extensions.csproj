@@ -4,23 +4,20 @@
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);NU5128</NoWarn>
 
+        <IsPackable>true</IsPackable>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageDescription>MSBuild common routine.</PackageDescription>
         <PackageTags>MSBuild Tasks</PackageTags>
         <DevelopmentDependency>true</DevelopmentDependency>
         <IncludeBuildOutput>false</IncludeBuildOutput>
-
+        <NuspecFile>$(MSBuildProjectName).nuspec</NuspecFile>
+        <NuspecBasePath>$(OutputPath)</NuspecBasePath>
+        
         <!--        Disable shared behavior-->
         <EmbedUntrackedSources>false</EmbedUntrackedSources>
         <IncludeSymbols>false</IncludeSymbols>
         <SymbolPackageFormat />
-    </PropertyGroup>
-
-    <!-- For read git metadata -->
-    <!-- see for more details https://kaylumah.nl/2021/03/27/set-nuget-metadata-via-msbuild.html-->
-    <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
-    </ItemGroup>
+    </PropertyGroup>    
     
     <ItemGroup>
         <None Include="build\*.*" PackagePath="build\" Pack="true" />

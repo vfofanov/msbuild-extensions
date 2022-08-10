@@ -10,7 +10,6 @@ ProjectSection(SolutionItems) = preProject
 	.msbuild\build.props = .msbuild\build.props
 	.msbuild\package.props = .msbuild\package.props
 	.msbuild\product.props = .msbuild\product.props
-	.msbuild\version.props = .msbuild\version.props
 EndProjectSection
 EndProject
 Global

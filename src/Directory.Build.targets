@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
-    <Import Project="$(MSBuildThisFileDirectory)Stenn.MSBuild.Extensions\build\Stenn.MSBuild.Extensions.targets"/>
-    
+  <Import Project="$(MSBuildThisFileDirectory)Stenn.MSBuild.Extensions\build\Stenn.MSBuild.Extensions.targets" />
+
+  <PropertyGroup>
+    <NuspecProperties>version=$(PackageVersion);ProjectDirectory=$(MSBuildProjectFileDirectory)</NuspecProperties>
+  </PropertyGroup>
 </Project>
