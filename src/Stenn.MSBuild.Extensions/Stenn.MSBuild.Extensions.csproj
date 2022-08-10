@@ -1,17 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework />
-        <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);NU5128</NoWarn>
-        <RootNamespace>Stenn.MSBuild.Common</RootNamespace>
-    </PropertyGroup>
 
-    <PropertyGroup>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageDescription>Swashbuckle Cli MSBuild targets for generate open api(swagger) specification during the build.</PackageDescription>
-        <PackageTags>MSBuild Tasks Swagger Swashbuckle openapi</PackageTags>
+        <PackageDescription>MSBuild common routine.</PackageDescription>
+        <PackageTags>MSBuild Tasks</PackageTags>
         <DevelopmentDependency>true</DevelopmentDependency>
         <IncludeBuildOutput>false</IncludeBuildOutput>
 
@@ -21,12 +16,16 @@
         <SymbolPackageFormat />
     </PropertyGroup>
 
+    <!-- For read git metadata -->
+    <!-- see for more details https://kaylumah.nl/2021/03/27/set-nuget-metadata-via-msbuild.html-->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+    </ItemGroup>
+    
     <ItemGroup>
         <None Include="build\*.*" PackagePath="build\" Pack="true" />
         <None Include="buildMultiTargeting\*.*" PackagePath="buildMultiTargeting\" Pack="true" />
         <None Include="..\..\README.md" PackagePath="\" Pack="true" />
-        <!--        <None Include="content\*.*" PackagePath="contentFiles\any\any" Pack="true" />-->
-        
     </ItemGroup>
 
 </Project>

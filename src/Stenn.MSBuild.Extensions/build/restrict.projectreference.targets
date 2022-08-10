@@ -14,7 +14,7 @@
 <!--        <Warning Text="V:'%(ProjectReference.Allowed)' A:'@(ProjectReferenceAlwaysAllowed)' P:'@(ProjectReference)'!='' I:'%(Identity)'" />-->
         
         <ItemGroup>
-<!--         Trick from here https://philcupp.wordpress.com/2009/10/12/msbuild-tricks-i-don%E2%80%99t-want-to-forget/-->
+<!--         Trick from here https://philcupp.wordpress.com/2009/10/12/msbuild-tricks-i-don%E2%80%99t-want-to-forget/ -->
             <ProjectReferenceNotAllowed Include="@(ProjectReference)"
                                         Condition=" '%(ProjectReference.Allowed)'!='True' and '@(ProjectReferenceAlwaysAllowed)'=='' and '@(ProjectReference)'!='' and '%(Identity)'!=''"/>
         </ItemGroup>
