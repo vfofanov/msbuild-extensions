@@ -54,8 +54,8 @@
                                             Condition=" '%(PackageReference.Version)'=='' and '@(PackageReferenceAllowedWithoutVersion)'=='' and '@(PackageReference)'!='' and '%(Identity)'!=''" />
         </ItemGroup>
 
-        <Error Condition="'%(PackageReferenceWithoutVersion.Identity)'!=''"
-               Text="PackageReference '%(PackageReferenceWithoutVersion.Identity)' without Version found in project file. . If this error incorrect just skip it via adding ItemGroup 'PackageReferenceAllowedWithoutVersion' with Include='%(PackageReferenceWithoutVersion.Identity)'.$(HelpLinkDetails)"
+        <Error Condition="'%(PackageReferenceWithoutVersion.Identity)'!='' And '$(TargetFramework)'!=''"
+               Text="PackageReference '%(PackageReferenceWithoutVersion.Identity)' without Version found in project file. If this error incorrect just skip it via adding ItemGroup 'PackageReferenceAllowedWithoutVersion' with Include='%(PackageReferenceWithoutVersion.Identity)'.$(HelpLinkDetails)"
                HelpKeyword="$(HelpLink)"
                File="$(MSBuildProjectFullPath)" />
 
