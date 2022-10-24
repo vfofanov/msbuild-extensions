@@ -8,6 +8,8 @@
             Project="$(MSBuildThisFileDirectory)\nuget.packages.versions.single.file.targets" />
     
     <Import Condition="'$(EnableExtension_RestrictProjectReference)'=='True' Or '$(EnableExtension_RestrictProjectReference)'=='true'"
-            Project="$(MSBuildThisFileDirectory)\restrict.projectreference.targets" />
+            Project="$(MSBuildThisFileDirectory)\restrict.projectreference.targets" />    
+
+    <Import Project="$(MSBuildThisFileDirectory)\internalsVisibleTo.targets" />
 
 </Project>
