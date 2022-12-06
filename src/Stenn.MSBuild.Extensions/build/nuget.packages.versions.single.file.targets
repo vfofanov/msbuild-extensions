@@ -22,9 +22,9 @@
                HelpKeyword="$(HelpLink)"
                File="$(MSBuildProjectFullPath)" />
 
-        <ItemGroup Condition="'$(SolutionDir)'!='' And '$(SolutionDir)'!='*Undefined*'">
-            <NugetVersionsFilePath Include="$(SolutionDir)**\$(NugetPackagesVersionFileName).targets" />
-            <NugetVersionsFilePath Include="$(SolutionDir)**\$(NugetPackagesVersionFileName).props" />
+        <ItemGroup Condition="'@(NugetVersionsFilePath)'=='' And '$(SolutionDir)'!='' And '$(SolutionDir)'!='*Undefined*'">
+            <NugetVersionsFilePath Include="$(SolutionDir)**\*$(NugetPackagesVersionFileName).targets" />
+            <NugetVersionsFilePath Include="$(SolutionDir)**\*$(NugetPackagesVersionFileName).props" />
         </ItemGroup>
 
         <!--        Check nuget.versions.targets file for PackageReference with Include instead of Update      -->

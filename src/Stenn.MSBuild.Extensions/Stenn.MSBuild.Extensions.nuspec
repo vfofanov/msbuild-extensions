@@ -13,10 +13,7 @@
         <iconUrl>https://github.com/StennGroup/stenn-aspnetcore-versioning/blob/logo/icon.png</iconUrl>
         <description>MSBuild common routine.</description>
         <copyright>$Copyright$</copyright>
-        <tags>MSBuild Tasks</tags>
-        <dependencies>
-                <dependency id="Microsoft.SourceLink.GitHub" version="1.1.1" />
-        </dependencies>
+        <tags>MSBuild Tasks</tags>        
     </metadata>
     <files>
         <file src="$ProjectDirectory$build\*.*" target="build" />
